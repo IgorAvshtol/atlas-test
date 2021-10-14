@@ -1,0 +1,19 @@
+.formBlock {
+    min-height: 550px;
+    display: flex;
+    flex-direction: column;
+    border: none;
+    min-width: 280px;
+}
+
+.title {
+    font-size: 18px;
+    font-weight: 300;
+    padding: 10px;
+    text-align: center;
+}
+
+.resultBlock {
+    text-align: center;
+    margin: 20px;
+}
