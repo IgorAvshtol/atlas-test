@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/atlas-test/static/css/main.dd68d10a.chunk.css",
+    "main.js": "/atlas-test/static/js/main.fb85d178.chunk.js",
+    "main.js.map": "/atlas-test/static/js/main.fb85d178.chunk.js.map",
+    "runtime-main.js": "/atlas-test/static/js/runtime-main.22369199.js",
+    "runtime-main.js.map": "/atlas-test/static/js/runtime-main.22369199.js.map",
+    "static/js/2.aed445f6.chunk.js": "/atlas-test/static/js/2.aed445f6.chunk.js",
+    "static/js/2.aed445f6.chunk.js.map": "/atlas-test/static/js/2.aed445f6.chunk.js.map",
+    "static/js/3.0e701fff.chunk.js": "/atlas-test/static/js/3.0e701fff.chunk.js",
+    "static/js/3.0e701fff.chunk.js.map": "/atlas-test/static/js/3.0e701fff.chunk.js.map",
+    "index.html": "/atlas-test/index.html",
+    "static/css/main.dd68d10a.chunk.css.map": "/atlas-test/static/css/main.dd68d10a.chunk.css.map",
+    "static/js/2.aed445f6.chunk.js.LICENSE.txt": "/atlas-test/static/js/2.aed445f6.chunk.js.LICENSE.txt",
+    "static/media/loader.e61adeab.png": "/atlas-test/static/media/loader.e61adeab.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.22369199.js",
+    "static/js/2.aed445f6.chunk.js",
+    "static/css/main.dd68d10a.chunk.css",
+    "static/js/main.fb85d178.chunk.js"
+  ]
+}
