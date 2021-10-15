@@ -10,7 +10,7 @@ Flex;
 ES6+;
 React JS;
 React Hooks;
-Styled Components(my first expirience);
+Styled Components(my first experience);
 Custom hooks;
 Fetch;
 Axios;
