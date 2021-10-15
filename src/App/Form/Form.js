@@ -5,25 +5,17 @@ import axios from "axios";
 import "./FormStyled.js";
 import s from "./Form.module.css"
 import Button from "./Button/Button";
-import { Result } from "./Result";
+import { Result } from "./Result/Result";
 import { Clock } from "./Clock/Clock";
-import { Input, Loading} from "./FormStyled";
+import { Input, Loading } from "./FormStyled";
 
 const Form = () => {
 
-  const [amount, setAmount] = useState("EUR");
-  const [amountOutput, setAmountOutput] = useState("EUR");
-  const [currency, setCurrency] = useState("EUR");
-  const [currencyOutput, setCurrencyOutput] = useState("USD");
+  const [amount, setAmount] = useState();
+  const [currency, setCurrency] = useState("USD");
+  const [currencyOutput, setCurrencyOutput] = useState("BYN");
   const [actualRates, setActualRates] = useState();
   const [result, setResult] = useState();
-
-
-  useEffect(()=>{
-    setCurrency('EUR')
-  },[])
-
-
 
   const [ratesData, setRatesData] = useState(
     {
@@ -31,16 +23,13 @@ const Form = () => {
     }
   );
 
-  const apiUrl = "https://api.exchangerate.host/latest?base=${currency}";
-  console.log(currency)
-  console.log(apiUrl)
+  const apiUrl = `https://api.exchangerate.host/latest?base=${currency}`;
 
   useEffect(() => {
     const getApiDate = async () => {
       try {
         const response = await axios.get(apiUrl);
         const {date, rates} = response.data;
-
         setRatesData(
           {
             date,
@@ -48,7 +37,6 @@ const Form = () => {
             status: "ready",
           }
         );
-
       } catch (error) {
         setRatesData(
           {
@@ -57,78 +45,37 @@ const Form = () => {
       }
     };
 
-    setTimeout(getApiDate, 3000);
-  }, []);
+    setTimeout(getApiDate, 1000);
+  }, [currency, currencyOutput]);
 
   const inputRef = useRef(null);
   const deleteAmount = () => {
     setAmount([]);
-    setAmountOutput([]);
   };
 
-  // const ratesData = useApiExchangesRates();
   const status = ratesData.status;
   const rates = ratesData.rates;
-  const date = ratesData.date;
 
 
   const calculateResult = () => {
-    // const rate = rates[currency];
     const rate = rates[currencyOutput];
-    const rateOutput = rates[currencyOutput];
-    console.log("axax" + rate);
     setResult({
       sourceAmount: +amount,
       targetAmount: amount * rate,
       currency,
     });
-    setActualRates(rate)
-    // setResultOutput({
-    //     sourceAmount: +amount,
-    //     targetAmount: amount * rateOutput,
-    //     currencyOutput,
-    // });
-  }
-  console.log(result)
-
+    setActualRates(rate);
+  };
 
   const onSubmit = (event) => {
     event.preventDefault();
     const amountTrimmed = amount.trim();
-    // const amountTrimmedOutput = amountOutput.trim();
     if (!amountTrimmed) {
       return;
     }
     deleteAmount(amountTrimmed);
     calculateResult(amount, currency);
-
-    // deleteAmount(amountTrimmedOutput);
-    // calculateResult(amountOutput, currencyOutput);
-    // inputRef.current.focus();
   };
-
-  const onChangeCurrency = (target) => {
-    setCurrency(target.value)
-    const amountTrimmed = amount.trim();
-    if (!amountTrimmed) {
-      return;
-    }
-    deleteAmount(amountTrimmed);
-    calculateResult(amount, currency);
-    // inputRef.current.focus();
-  }
-
-  const onChangeOutputCurrency = (target) => {
-    setCurrencyOutput(target.value)
-    const amountTrimmed = amountOutput.trim();
-    if (!amountTrimmed) {
-      return;
-    }
-    deleteAmount(amountTrimmed);
-    calculateResult(amountOutput, currencyOutput);
-    // inputRef.current.focus();
-  }
-
 
   return (
     <form onSubmit={onSubmit}>
@@ -151,7 +98,6 @@ const Form = () => {
               <Input
                 as="select"
                 onChange={({target}) => setCurrency(target.value)}
-                // onChange={({ target }) => onChangeCurrency(target)}
                 required
                 value={currency}
               >
@@ -179,7 +125,6 @@ const Form = () => {
               <Input
                 as="select"
                 onChange={({target}) => setCurrencyOutput(target.value)}
-                // onChange={({ target }) => onChangeOutputCurrency(target)}
                 required
                 value={currencyOutput}
               >
@@ -201,7 +146,6 @@ const Form = () => {
                 currencyOutput={currencyOutput}
                 actualRates={actualRates}
               />
-
             </>
           )}
       </div>
